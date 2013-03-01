@@ -1,0 +1,4 @@
+#!/bin/sh
+
+APPDIR=$(dirname "$0")
+java  -Djava.library.path="$APPDIR" -cp "$APPDIR/lib/push_pin_vector_subtraction.jar:$APPDIR/lib/core.jar" push_pin_vector_subtraction
