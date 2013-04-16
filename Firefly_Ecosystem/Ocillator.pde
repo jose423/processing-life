@@ -11,7 +11,7 @@ class Oscillator extends Creature {
   PVector velocity;
   PVector amplitude;
   PVector location;
-
+  float x, y;
   Oscillator(Landscape defaultL, float seedx, float seedy, float _x, float _y) {
     super(defaultL, seedx, seedy);
     angle = new PVector();
@@ -19,6 +19,8 @@ class Oscillator extends Creature {
     amplitude = new PVector(random(20, width/4), random(20, height/4));
     location = new PVector(_x, _y);
     blink = true;
+    x = sin(angle.x)*amplitude.x;
+    y = sin(angle.y)*amplitude.y;
   }   
 
   void update() {
@@ -30,12 +32,12 @@ class Oscillator extends Creature {
     spirit--;
     //decrease lifeforce
     lifeforce = lifeforce - 2;
+    x = sin(angle.x)*amplitude.x;
+    y = sin(angle.y)*amplitude.y;
+    //map lifeforce to opacity to fade when they get older and die :(
   }   
   void display() {   
     float randomSize = random(12);
-    float x = sin(angle.x)*amplitude.x;
-    float y = sin(angle.y)*amplitude.y;
-    //map lifeforce to opacity to fade when they get older and die :(
     float opacity = map(lifeforce, 0, MAXLIFESPAN, 0, 255);    //if spirit is greater than 300 use random flickering pattern, otherwise occilate between size 6 and 15 for a standardized flicker simulating emergence
     //if spirit is less than 300, blink, meaning occilate between two sizes, 6 and 12
     if (spirit > 300) {

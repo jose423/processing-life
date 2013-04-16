@@ -70,8 +70,19 @@ class FrictionSpace {
     }
     //Creature's location falls within FrictionSpace
     if (l.x > x && l.x < x + w && l.y > y && l.y < y + h) {
+      println(m + "in friction space");
       isBumped = true;
       return true;
+    }
+    else 
+      if (m instanceof Oscillator) {
+      Oscillator o = (Oscillator)m;
+      //return false;
+      if (o.x > x && o.x < x + w && o.y > y && o.y < y + h) {
+        isBumped = true;
+        return true;
+      }
+      else return false;
     }
     else {
       return false;
